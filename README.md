@@ -7,7 +7,7 @@ This repo demonstrates the use of a financial analyst agent, built in Microsoft 
 
 ## 📑 Table of Contents:
 - [Part 1: Prerequisites](#part-1-prerequisites)
-- [Part 2: Environment Setup]()
+- [Part 2: Environment Setup](#part-2-environment-setup)
 - [Part 3: Agent Configuration & Tools]()
 - [Part 4: Execution Workflow]()
 - [Part 5: Testing the Agent]()
@@ -34,8 +34,11 @@ Configure the following variables to allow the notebook to authenticate and conn
 ## Part 3: Agent Configuration & Tools
 
 ### 3.1 Tool Definitions
-The agent is equipped with a dual-tooling strategy to ensure data accuracy:
-WebSearchTool: Used to crawl the live web and identify current market leaders by ticker.MCPTool: Connects to the alpha_finance service to fetch specific fundamentals and news once tickers are identified.Python# Initializing tools within the Agent definition
+The agent is equipped with two tools to enable retrieval of the latest stock market information for the requested industry sector:
+- **WebSearchTool**: Used to crawl the live web and identify current market leaders by ticker;
+- **MCPTool**: Connects to the Alpha Vantage's MCP service to fetch specific fundamentals and news once tickers are identified.
+
+` Python
 tools = [
     WebSearchTool(
         user_location = WebSearchApproximateLocation(country = "GB", city = "London")
@@ -46,6 +49,9 @@ tools = [
         require_approval = "never"
     ),
 ]
-Part 4: Execution WorkflowThe agent follows a strict logical sequence to maintain data integrity:Ticker Retrieval: The agent uses Web Search first to identify the top 5 publicly listed companies in a requested sector based on current market capitalization.Context Enrichment: For each identified ticker, the agent calls the MCP tool to retrieve up-to-date fundamentals and recent news.Synthesis: The model processes the combined search and MCP data to rank investments and generate the final output.Part 5: Testing the Agent5.1 Run the AnalysisExecute the provided Jupyter notebook AIFoundry_GPT53Codex_StockDemo.ipynb. The agent will generate a self-contained, dark-theme HTML dashboard directly in the output cell.5.2 HousekeepingThe notebook includes a cleanup step to delete the agent version and close client connections once the analysis is complete to manage project resources efficiently.Python# Clean up resources
+`
+
+Part 4: Execution Workflow
+The agent follows a strict logical sequence to maintain data integrity:Ticker Retrieval: The agent uses Web Search first to identify the top 5 publicly listed companies in a requested sector based on current market capitalization.Context Enrichment: For each identified ticker, the agent calls the MCP tool to retrieve up-to-date fundamentals and recent news.Synthesis: The model processes the combined search and MCP data to rank investments and generate the final output.Part 5: Testing the Agent5.1 Run the AnalysisExecute the provided Jupyter notebook AIFoundry_GPT53Codex_StockDemo.ipynb. The agent will generate a self-contained, dark-theme HTML dashboard directly in the output cell.5.2 HousekeepingThe notebook includes a cleanup step to delete the agent version and close client connections once the analysis is complete to manage project resources efficiently.Python# Clean up resources
 project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
 project_client.close()
