@@ -10,7 +10,7 @@ This repo demonstrates the use of a financial analyst agent, built in Microsoft 
 - [Part 2: Environment Setup](#part-2-environment-setup)
 - [Part 3: Agent Configuration & Tools](#part-3-agent-configuration--tools)
 - [Part 4: Execution Workflow](#part-4-execution-workflow)
-- [Part 5: Testing the Agent]()
+- [Part 5: Testing the Agent](#part-5-testing-the-agent)
 
 ## Part 1: Prerequisites
 Before running this solution, ensure that you have:
