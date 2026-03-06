@@ -3,7 +3,7 @@
 This repo demonstrates the use of a financial analyst agent, built in Microsoft Foundry's new **Agent Service** and powered by **GPT-5.3-Codex**. The solution implements a two-step retrieval process with **Web Search** and the **Model Context Protocol (MCP)** tools to provide the *Codex* model with the latest stock market context.
 
 > [!TIP]
-> This solution utilises protected Alpha Vantage MCP service. You can obtain *free API key* from the vendor site here: https://www.alphavantage.co/support/#api-key.
+> This solution utilises protected Alpha Vantage MCP service. You can obtain a *free API key* from the vendor site here: https://www.alphavantage.co/support/#api-key.
 
 ## 📑 Table of Contents:
 - [Part 1: Prerequisites](#part-1-prerequisites)
@@ -15,6 +15,7 @@ This repo demonstrates the use of a financial analyst agent, built in Microsoft 
 ## Part 1: Prerequisites
 Before running this solution, ensure that you have:
 - **Azure Subscription** with access to **Microsoft Foundry** project;
+- **Python 3.11+** with the latest **Foundry SDK** installed;
 - **Alpha Vantage API Key** for the real-time stock market content.
 
 ## Part 2: Environment Setup
@@ -35,7 +36,7 @@ Configure the following variables to allow the notebook to authenticate and conn
 
 ### 3.1 Tool Definitions
 The agent is equipped with two tools to enable retrieval of the latest stock market information for the requested industry sector:
-- **WebSearchTool**: Used to crawl the live web and identify current market leaders by ticker;
+- **WebSearchTool**: Used to crawl the live Web and identify current market leaders by ticker;
 - **MCPTool**: Connects to the Alpha Vantage's MCP service to fetch specific fundamentals and news once tickers are identified.
 
 ``` Python
@@ -53,11 +54,11 @@ tools = [
 
 ## Part 4: Execution Workflow
 The agent follows a logical sequence to ensure output accuracy:
-- **Ticker Retrieval**: The agent uses *Web Search* tool first to identify the *top 5* publicly listed companies in a requested sector based on current market capitalisation.
+- **Ticker Retrieval**: The agent uses *Web Search* tool first to identify the *top 5* publicly listed companies in a requested sector based on the current market capitalisation.
 - **Context Enrichment**: For each identified ticker, the agent calls the *MCP* tool to retrieve up-to-date fundamentals and recent news.
 - **Synthesis**: The *Codex* model processes the combined search and MCP data to rank investments and generate the final output.
 
-This sequence is managed through the agent's intsructions:
+This sequence is managed through the following agent intsructions:
 
 ``` JSON
 You are a financial analyst called The Alpha Finder.
