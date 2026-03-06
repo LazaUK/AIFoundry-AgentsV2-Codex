@@ -1,21 +1,41 @@
-# Microsoft Foundry: Real-Time Stock Analyst with MCP & Web Search tools (Agents v2)
+# Microsoft Foundry: Real-Time Stock Analyst with GPT-5.3-Codex, MCP & Web Search tools (Agents v2)
 
 This repo demonstrates the use of a financial analyst agent, built in Microsoft Foundry's new **Agent Service** and powered by **GPT-5.3-Codex**. The solution implements a two-step retrieval process with **Web Search** and the **Model Context Protocol (MCP)** tools to provide the *Codex* model with the latest stock market context.
 
 > [!TIP]
-> This solution utilises protected Alpha Vantage MCP service. You can obtain free API key from the vendor site here: https://www.alphavantage.co/support/#api-key.
+> This solution utilises protected Alpha Vantage MCP service. You can obtain *free API key* from the vendor site here: https://www.alphavantage.co/support/#api-key.
 
 ## 📑 Table of Contents:
-- [Part 1: Prerequisites]()
+- [Part 1: Prerequisites](#part-1-prerequisites)
 - [Part 2: Environment Setup]()
 - [Part 3: Agent Configuration & Tools]()
 - [Part 4: Execution Workflow]()
 - [Part 5: Testing the Agent]()
 
 ## Part 1: Prerequisites
-Before running this solution, ensure you have:Azure Subscription with access to Azure AI Foundry.Bing Search resource connected to your Foundry project.Alpha Vantage API Key for the MCP finance service.Azure CLI installed locally for environment configuration.
+Before running this solution, ensure that you have:
+- **Azure Subscription** with access to **Microsoft Foundry** project;
+- **Alpha Vantage API Key** for the real-time stock market content.
 
-## Part 2: Environment Setup2.1 Azure AI Foundry SetupCreate an Azure AI Foundry project and deploy the required model (e.g., GPT-5.3-Codex).2.2 Environment VariablesConfigure the following variables to allow the notebook to authenticate and connect to your resources:Environment VariableDescriptionAZURE_FOUNDRY_PROJECT_ENDPOINTYour Azure AI Foundry Project connection string.AZURE_FOUNDRY_CODEX_MODELThe deployment name of your model (e.g., gpt-5.3-codex).ALPHAVANTAGE_API_KEYYour personal API key for stock data retrieval.Part 3: Agent Configuration & Tools3.1 Tool DefinitionsThe agent is equipped with a dual-tooling strategy to ensure data accuracy:WebSearchTool: Used to crawl the live web and identify current market leaders by ticker.MCPTool: Connects to the alpha_finance service to fetch specific fundamentals and news once tickers are identified.Python# Initializing tools within the Agent definition
+## Part 2: Environment Setup
+
+### 2.1 Azure AI Foundry Setup
+If not available yet, create a new Microsoft Foundry project and deploy the required *Codex* model (e.g., **GPT-5.3-Codex**).
+
+### 2.2 Environment Variables
+Configure the following variables to allow the notebook to authenticate and connect to your resources:
+
+| Environment Variable             | Description                                                |
+| -------------------------------- | ---------------------------------------------------------- |
+| `AZURE_FOUNDRY_PROJECT_ENDPOINT` | Your Microsoft Foundry Project connection string.          |
+| `AZURE_FOUNDRY_CODEX_MODEL`      | The deployment name of your model (e.g., `gpt-5.3-codex`). |
+| `ALPHAVANTAGE_API_KEY`           | Your personal API key for stock data retrieval.            |
+
+## Part 3: Agent Configuration & Tools
+
+### 3.1 Tool Definitions
+The agent is equipped with a dual-tooling strategy to ensure data accuracy:
+WebSearchTool: Used to crawl the live web and identify current market leaders by ticker.MCPTool: Connects to the alpha_finance service to fetch specific fundamentals and news once tickers are identified.Python# Initializing tools within the Agent definition
 tools = [
     WebSearchTool(
         user_location = WebSearchApproximateLocation(country = "GB", city = "London")
