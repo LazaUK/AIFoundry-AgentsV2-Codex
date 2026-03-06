@@ -8,7 +8,7 @@ This repo demonstrates the use of a financial analyst agent, built in Microsoft 
 ## 📑 Table of Contents:
 - [Part 1: Prerequisites](#part-1-prerequisites)
 - [Part 2: Environment Setup](#part-2-environment-setup)
-- [Part 3: Agent Configuration & Tools]()
+- [Part 3: Agent Configuration & Tools](#part-3-agent-configuration--tools)
 - [Part 4: Execution Workflow]()
 - [Part 5: Testing the Agent]()
 
@@ -52,6 +52,11 @@ tools = [
 `
 
 Part 4: Execution Workflow
-The agent follows a strict logical sequence to maintain data integrity:Ticker Retrieval: The agent uses Web Search first to identify the top 5 publicly listed companies in a requested sector based on current market capitalization.Context Enrichment: For each identified ticker, the agent calls the MCP tool to retrieve up-to-date fundamentals and recent news.Synthesis: The model processes the combined search and MCP data to rank investments and generate the final output.Part 5: Testing the Agent5.1 Run the AnalysisExecute the provided Jupyter notebook AIFoundry_GPT53Codex_StockDemo.ipynb. The agent will generate a self-contained, dark-theme HTML dashboard directly in the output cell.5.2 HousekeepingThe notebook includes a cleanup step to delete the agent version and close client connections once the analysis is complete to manage project resources efficiently.Python# Clean up resources
+The agent follows a logical sequence to ensure output accuracy:
+- **Ticker Retrieval**: The agent uses *Web Search* tool first to identify the *top 5* publicly listed companies in a requested sector based on current market capitalisation.
+- **Context Enrichment**: For each identified ticker, the agent calls the *MCP* tool to retrieve up-to-date fundamentals and recent news.
+- **Synthesis**: The *Codex* model processes the combined search and MCP data to rank investments and generate the final output.
+
+Part 5: Testing the Agent5.1 Run the AnalysisExecute the provided Jupyter notebook AIFoundry_GPT53Codex_StockDemo.ipynb. The agent will generate a self-contained, dark-theme HTML dashboard directly in the output cell.5.2 HousekeepingThe notebook includes a cleanup step to delete the agent version and close client connections once the analysis is complete to manage project resources efficiently.Python# Clean up resources
 project_client.agents.delete_version(agent_name=agent.name, agent_version=agent.version)
 project_client.close()
