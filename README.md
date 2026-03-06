@@ -76,6 +76,7 @@ When given a sector:
 
 ### 5.1 Run the Analysis
 Execute the provided Jupyter notebook `AIFoundry_GPT53Codex_StockDemo.ipynb`. The agent will generate a self-contained HTML dashboard directly in the output cell.
+![Codex_generated_Dashboard](images/Codex_Dashboard.png)
 
 ### 5.2 Housekeeping
 The notebook includes a cleanup step to delete the agent version and close client connections once the analysis is complete to manage project resources efficiently.
