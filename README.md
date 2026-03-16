@@ -18,6 +18,9 @@ Before running this solution, ensure that you have:
 - **Python 3.11+** with the latest **Foundry SDK** installed;
 - **Alpha Vantage API Key** for the real-time stock market content.
 
+> [!NOTE]
+> You may find .Net / C# version of a similar solution on Lohith's GitHub repo [here](https://github.com/lohithgn/AIFoundry-AgentsV2-Codex-Dotnet).
+
 ## Part 2: Environment Setup
 
 ### 2.1 Azure AI Foundry Setup
